@@ -1,0 +1,29 @@
+{
+  "settings": {
+    "command": {
+      "label": "ultcontrol command",
+      "description": "Path or name of the ultcontrol binary"
+    },
+    "poll": {
+      "label": "Refresh interval (seconds)",
+      "description": "How often to read battery and settings. Each read briefly takes the headphones' control channel."
+    }
+  },
+  "ui": {
+    "title": "ULT WEAR",
+    "refresh": "Refresh",
+    "noise_cancelling": "Noise cancelling",
+    "ambient": "Ambient",
+    "off": "Off",
+    "ambient_level": "Ambient level",
+    "equalizer": "Equalizer",
+    "ult": "ULT",
+    "ult_off": "Off",
+    "ult_1": "ULT 1",
+    "ult_2": "ULT 2",
+    "offline": "Headphones unreachable",
+    "busy": "Working…",
+    "battery": "Battery",
+    "charging": "charging"
+  }
+}

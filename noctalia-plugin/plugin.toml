@@ -1,0 +1,43 @@
+id = "mavxd/ultcontrol"
+name = "ULT Control"
+version = "0.1.0"
+plugin_api = 20
+author = "mavxd"
+license = "MIT"
+dependencies = []
+tags = ["audio", "bluetooth", "sony"]
+icon = "headphones"
+description = "Control Sony WH-ULT900N noise cancelling, ambient sound and EQ via the ultcontrol CLI."
+
+[[setting]]
+key = "command"
+type = "string"
+label_key = "settings.command.label"
+description_key = "settings.command.description"
+default = "ultcontrol"
+
+[[setting]]
+key = "poll_seconds"
+type = "int"
+label_key = "settings.poll.label"
+description_key = "settings.poll.description"
+default = 120
+min = 30
+max = 900
+
+[[widget]]
+id = "bar"
+entry = "bar.luau"
+
+[[panel]]
+id = "panel"
+entry = "panel.luau"
+width = 360
+height = 520
+placement = "attached"
+position = "auto"
+open_near_click = true
+
+[[service]]
+id = "service"
+entry = "service.luau"

@@ -1,0 +1,11 @@
+[Desktop Entry]
+Type=Application
+Name=ULT Control
+GenericName=Headphone Control
+Comment=Control Sony WH-ULT900N noise cancelling, ambient sound and EQ
+Exec=kitty --class ultcontrol --title "ULT Control" -o initial_window_width=70c -o initial_window_height=24c ultcontrol
+Icon=ultcontrol
+Terminal=false
+Categories=AudioVideo;Audio;Settings;
+Keywords=sony;headphones;ult;eq;anc;
+StartupWMClass=ultcontrol
