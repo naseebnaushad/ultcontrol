@@ -4,6 +4,7 @@ import (
 	"context"
 	"fmt"
 	"os"
+	"regexp"
 	"strings"
 	"syscall"
 	"time"
@@ -47,7 +48,13 @@ func dial(ctx context.Context, mac string) (*os.File, error) {
 	}
 }
 
+var macRe = regexp.MustCompile(`^([0-9A-Fa-f]{2}:){5}[0-9A-Fa-f]{2}$`)
+
 func dialOnce(ctx context.Context, mac string) (*os.File, error) {
+	// mac becomes part of a D-Bus object path, so refuse anything that is not an address.
+	if !macRe.MatchString(mac) {
+		return nil, fmt.Errorf("invalid Bluetooth address %q", mac)
+	}
 	bus, err := dbus.ConnectSystemBus()
 	if err != nil {
 		return nil, err

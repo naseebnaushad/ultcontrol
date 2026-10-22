@@ -7,6 +7,8 @@ const (
 	typeAck byte = 0x01
 	typeMDR byte = 0x0C
 
+	maxFrame = 4096 // generous upper bound for an escaped frame
+
 	startByte = 0x3E
 	endByte   = 0x3C
 	escByte   = 0x3D
@@ -60,6 +62,11 @@ func (d *decoder) feed(chunk []byte) []frame {
 				out = append(out, f)
 			}
 		case d.active:
+			if d.buf.Len() >= maxFrame {
+				d.active = false // runaway frame: drop it and wait for the next start marker
+				d.buf.Reset()
+				continue
+			}
 			d.buf.WriteByte(b)
 		}
 	}

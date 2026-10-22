@@ -1,6 +1,5 @@
 # Building a controller for Bluetooth headphones, from scratch
 
-> New to programming? Start with [LEARN.md](LEARN.md), a step-by-step beginner course with runnable code in `tutorial/`.
 
 This guide explains how `ultcontrol` was built: a command-line tool, a terminal UI and a Noctalia
 shell plugin that control Sony WH-ULT900N ("ULT WEAR") headphones on Linux. It assumes you know

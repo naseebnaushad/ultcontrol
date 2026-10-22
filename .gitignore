@@ -1,1 +1,57 @@
-bin/
+# build output
+/bin/
+/dist/
+/ultcontrol
+*.exe
+*.test
+*.out
+*.prof
+
+# personal learning material, not part of the project
+/tutorial/
+/LEARN.md
+
+# local notes, scratch and reverse-engineering captures
+/scratch/
+/notes/
+/captures/
+*.pcap
+*.pcapng
+*.btsnoop
+*.log
+*.hex
+*.bin
+*.bak
+*.orig
+*.rej
+*.tmp
+
+# secrets and local configuration
+.env
+.env.*
+*.pem
+*.key
+*.p12
+*.pfx
+*.crt
+*.kdbx
+id_rsa*
+id_ed25519*
+secrets.*
+credentials*
+config.local.*
+*.local.toml
+
+# editors, OS, tooling
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# go
+/vendor/
+go.work
+go.work.sum

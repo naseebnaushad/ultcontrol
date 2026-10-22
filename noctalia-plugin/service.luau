@@ -47,7 +47,15 @@ local function pump()
   end, 30000)
 end
 
+-- Only these subcommands may be run; ult.cmd is shared state, so don't trust it blindly.
+local ALLOWED = { status = true, mode = true, eq = true }
+
 local function enqueue(args)
+  local first = string.match(args, "^(%S+)")
+  if not first or not ALLOWED[first] then
+    noctalia.state.set("ult.error", "command not allowed")
+    return
+  end
   table.insert(queue, args)
   pump()
 end
