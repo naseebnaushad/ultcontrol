@@ -61,7 +61,7 @@ local function render()
     ui.separator({}),
     ui.label({ text = noctalia.tr("ui.noise_cancelling") }),
     ui.row({ gap = 6 }, {
-      modeButton(noctalia.tr("ui.noise_cancelling"), "nc", ""),
+      modeButton(noctalia.tr("ui.nc"), "nc", ""),
       modeButton(noctalia.tr("ui.ambient"), "ambient", " " .. level),
       modeButton(noctalia.tr("ui.off"), "off", ""),
     }),
@@ -103,7 +103,7 @@ local function render()
     ui.button({ text = noctalia.tr("ui.refresh"), enabled = not busy, onClick = function () send("status") end }),
   }))
 
-  panel.render(ui.column({ padding = 16, gap = 8 }, rows))
+  panel.render(ui.scroll({ padding = 16, gap = 8 }, rows))
 end
 
 noctalia.state.watch("ult.status", function (value)
@@ -113,5 +113,14 @@ end)
 noctalia.state.watch("ult.busy", function (value) busy = value == "1"; render() end)
 noctalia.state.watch("ult.error", function (value) err = value or ""; render() end)
 
-function onOpen() render() end
+-- Pick up whatever the service has already published; watch() only fires on changes.
+local function load()
+  local s = noctalia.state.get("ult.status")
+  if s ~= nil and s ~= "" then status = noctalia.json.decode(s) end
+  err = noctalia.state.get("ult.error") or ""
+  busy = noctalia.state.get("ult.busy") == "1"
+end
+load()
+
+function onOpen() load(); render() end
 render()

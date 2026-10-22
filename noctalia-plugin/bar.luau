@@ -34,6 +34,15 @@ noctalia.state.watch("ult.error", function (value)
   render()
 end)
 
+-- Pick up whatever the service has already published; watch() only fires on changes.
+local function load()
+  local s = noctalia.state.get("ult.status")
+  if s ~= nil and s ~= "" then status = noctalia.json.decode(s) end
+  err = noctalia.state.get("ult.error") or ""
+
+end
+load()
+
 function onClick()
   noctalia.togglePanel("mavxd/ultcontrol:panel")
 end
